@@ -11,12 +11,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 // Simple mailto form submit
 function submitForm(e){
   e.preventDefault();
-  const name1 = document.getElementById('name').value.trim();
+  const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
   if(!name || !email || !message){ alert('Please fill all fields.'); return false; }
   const subject = encodeURIComponent('Website enquiry from ' + name);
-  const body = encodeURIComponent('Name: ' + name1 + '\nEmail: ' + email + '\n\n' + message);
+  const body = encodeURIComponent('name: ' + name + '\nEmail: ' + email + '\n\n' + message);
   window.location.href = 'mailto:info@mvelo.global?subject=' + subject + '&body=' + body;
   return false;
 }
