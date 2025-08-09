@@ -1,0 +1,34 @@
+
+// Smooth scrolling for internal links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+// Simple mailto form submit
+function submitForm(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(!name || !email || !message){ alert('Please fill all fields.'); return false; }
+  const subject = encodeURIComponent('Website enquiry from ' + name);
+  const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+  window.location.href = 'mailto:info@mvelo.global?subject=' + subject + '&body=' + body;
+  return false;
+}
+
+// Scroll reveal for elements with [data-anim]
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.style.opacity = 1; entry.target.style.transform = 'translateY(0)'; observer.unobserve(entry.target); }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('[data-anim]').forEach(el=>{
+  el.style.opacity = 0; el.style.transform = 'translateY(12px)'; el.style.transition = 'opacity .6s ease, transform .6s ease';
+  observer.observe(el);
+});
