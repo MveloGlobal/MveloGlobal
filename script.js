@@ -17,7 +17,7 @@ function submitForm(e){
   if(!name || !email || !message){ alert('Please fill all fields.'); return false; }
   const subject = encodeURIComponent('Website enquiry from ' + name);
   const body = encodeURIComponent('Name1: ' + name + '\nEmail: ' + email + '\n\n' + message);
-  window.location.href = 'mailto:info@mvelo.global?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:MveloGlobalNetwork@gmail.com?subject=' + subject + '&body=' + body;
   return false;
 }
 
